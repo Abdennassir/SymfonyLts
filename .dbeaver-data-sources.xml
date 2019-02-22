@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="mysql8-169158b716c-13d650b503ac3854" provider="mysql" driver="mysql8" name="MySQL 8.x - symfony" save-password="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="symfony" url="jdbc:mysql://localhost:3306/symfony" user="root" type="dev"/>
+	</data-source>
+	<data-source id="mysql8-169158cee5d-12ffd005321ac5b2" provider="mysql" driver="mysql8" name="MySQL 8.x - symfony 2" save-password="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="symfony" url="jdbc:mysql://localhost:3306/symfony" user="root" type="dev">
+			<property name="connectTimeout" value="20000"/>
+		</connection>
+	</data-source>
+	<data-source id="mysql8-1691593adf8-456413942d2fce84" provider="mysql" driver="mysql8" name="MySQL 8.x - symfony 3" save-password="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="symfony" url="jdbc:mysql://localhost:3306/symfony" user="root" type="dev">
+			<provider-property name="@dbeaver-serverTimezone@" value="Africa/Casablanca"/>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>

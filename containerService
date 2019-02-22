@@ -1,0 +1,97 @@
+﻿
+[33mSymfony Container Public Services[39m
+[33m=================================[39m
+
+ ----------------------------------------------------------------------------- --------------------------------------------------------------------------- 
+ [32m Service ID                                                                  [39m [32m Class name                                                                [39m 
+ ----------------------------------------------------------------------------- --------------------------------------------------------------------------- 
+  [36mSymfony\Bundle\FrameworkBundle\Controller\RedirectController[39m                  Symfony\Bundle\FrameworkBundle\Controller\RedirectController               
+  [36mSymfony\Bundle\FrameworkBundle\Controller\TemplateController[39m                  Symfony\Bundle\FrameworkBundle\Controller\TemplateController               
+  [36mcache.app[39m                                                                     Symfony\Component\Cache\Adapter\TraceableAdapter                           
+  [36mcache.app_clearer[39m                                                             alias for "cache.default_clearer"                                          
+  [36mcache.global_clearer[39m                                                          Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                 
+  [36mcache.system[39m                                                                  Symfony\Component\Cache\Adapter\TraceableAdapter                           
+  [36mcache.system_clearer[39m                                                          Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                 
+  [36mcache_clearer[39m                                                                 Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer                
+  [36mcache_warmer[39m                                                                  Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate              
+  [36mconsole.command.doctrine_bundle_doctrinecachebundle_command_containscommand[39m   alias for "doctrine_cache.contains_command"                                
+  [36mconsole.command.doctrine_bundle_doctrinecachebundle_command_deletecommand[39m     alias for "doctrine_cache.delete_command"                                  
+  [36mconsole.command.doctrine_bundle_doctrinecachebundle_command_flushcommand[39m      alias for "doctrine_cache.flush_command"                                   
+  [36mconsole.command.doctrine_bundle_doctrinecachebundle_command_statscommand[39m      alias for "doctrine_cache.stats_command"                                   
+  [36mconsole.command_loader[39m                                                        Symfony\Component\Console\CommandLoader\ContainerCommandLoader             
+  [36mdata_collector.dump[39m                                                           Symfony\Component\HttpKernel\DataCollector\DumpDataCollector               
+  [36mdatabase_connection[39m                                                           alias for "doctrine.dbal.default_connection"                               
+  [36mdoctrine[39m                                                                      Doctrine\Bundle\DoctrineBundle\Registry                                    
+  [36mdoctrine.dbal.default_connection[39m                                              Doctrine\DBAL\Connection                                                   
+  [36mdoctrine.orm.default_entity_manager[39m                                           Doctrine\ORM\EntityManager                                                 
+  [36mdoctrine.orm.default_metadata_cache[39m                                           alias for "doctrine_cache.providers.doctrine.orm.default_metadata_cache"   
+  [36mdoctrine.orm.default_query_cache[39m                                              alias for "doctrine_cache.providers.doctrine.orm.default_query_cache"      
+  [36mdoctrine.orm.default_result_cache[39m                                             alias for "doctrine_cache.providers.doctrine.orm.default_result_cache"     
+  [36mdoctrine.orm.entity_manager[39m                                                   alias for "doctrine.orm.default_entity_manager"                            
+  [36mdoctrine_cache.providers.doctrine.orm.default_metadata_cache[39m                  Doctrine\Common\Cache\ArrayCache                                           
+  [36mdoctrine_cache.providers.doctrine.orm.default_query_cache[39m                     Doctrine\Common\Cache\ArrayCache                                           
+  [36mdoctrine_cache.providers.doctrine.orm.default_result_cache[39m                    Doctrine\Common\Cache\ArrayCache                                           
+  [36mevent_dispatcher[39m                                                              alias for "debug.event_dispatcher"                                         
+  [36mfilesystem[39m                                                                    Symfony\Component\Filesystem\Filesystem                                    
+  [36mform.factory[39m                                                                  Symfony\Component\Form\FormFactory                                         
+  [36mform.type.birthday[39m                                                            Symfony\Component\Form\Extension\Core\Type\BirthdayType                    
+  [36mform.type.button[39m                                                              Symfony\Component\Form\Extension\Core\Type\ButtonType                      
+  [36mform.type.checkbox[39m                                                            Symfony\Component\Form\Extension\Core\Type\CheckboxType                    
+  [36mform.type.collection[39m                                                          Symfony\Component\Form\Extension\Core\Type\CollectionType                  
+  [36mform.type.country[39m                                                             Symfony\Component\Form\Extension\Core\Type\CountryType                     
+  [36mform.type.currency[39m                                                            Symfony\Component\Form\Extension\Core\Type\CurrencyType                    
+  [36mform.type.date[39m                                                                Symfony\Component\Form\Extension\Core\Type\DateType                        
+  [36mform.type.datetime[39m                                                            Symfony\Component\Form\Extension\Core\Type\DateTimeType                    
+  [36mform.type.email[39m                                                               Symfony\Component\Form\Extension\Core\Type\EmailType                       
+  [36mform.type.file[39m                                                                Symfony\Component\Form\Extension\Core\Type\FileType                        
+  [36mform.type.hidden[39m                                                              Symfony\Component\Form\Extension\Core\Type\HiddenType                      
+  [36mform.type.integer[39m                                                             Symfony\Component\Form\Extension\Core\Type\IntegerType                     
+  [36mform.type.language[39m                                                            Symfony\Component\Form\Extension\Core\Type\LanguageType                    
+  [36mform.type.locale[39m                                                              Symfony\Component\Form\Extension\Core\Type\LocaleType                      
+  [36mform.type.money[39m                                                               Symfony\Component\Form\Extension\Core\Type\MoneyType                       
+  [36mform.type.number[39m                                                              Symfony\Component\Form\Extension\Core\Type\NumberType                      
+  [36mform.type.password[39m                                                            Symfony\Component\Form\Extension\Core\Type\PasswordType                    
+  [36mform.type.percent[39m                                                             Symfony\Component\Form\Extension\Core\Type\PercentType                     
+  [36mform.type.radio[39m                                                               Symfony\Component\Form\Extension\Core\Type\RadioType                       
+  [36mform.type.range[39m                                                               Symfony\Component\Form\Extension\Core\Type\RangeType                       
+  [36mform.type.repeated[39m                                                            Symfony\Component\Form\Extension\Core\Type\RepeatedType                    
+  [36mform.type.reset[39m                                                               Symfony\Component\Form\Extension\Core\Type\ResetType                       
+  [36mform.type.search[39m                                                              Symfony\Component\Form\Extension\Core\Type\SearchType                      
+  [36mform.type.submit[39m                                                              Symfony\Component\Form\Extension\Core\Type\SubmitType                      
+  [36mform.type.text[39m                                                                Symfony\Component\Form\Extension\Core\Type\TextType                        
+  [36mform.type.textarea[39m                                                            Symfony\Component\Form\Extension\Core\Type\TextareaType                    
+  [36mform.type.time[39m                                                                Symfony\Component\Form\Extension\Core\Type\TimeType                        
+  [36mform.type.timezone[39m                                                            Symfony\Component\Form\Extension\Core\Type\TimezoneType                    
+  [36mform.type.url[39m                                                                 Symfony\Component\Form\Extension\Core\Type\UrlType                         
+  [36mhttp_kernel[39m                                                                   Symfony\Component\HttpKernel\HttpKernel                                    
+  [36mkernel[39m                                                                                                                                                   
+  [36mmailer[39m                                                                        alias for "swiftmailer.mailer.default"                                     
+  [36mprofiler[39m                                                                      Symfony\Component\HttpKernel\Profiler\Profiler                             
+  [36mrequest_stack[39m                                                                 Symfony\Component\HttpFoundation\RequestStack                              
+  [36mrouter[39m                                                                        alias for "router.default"                                                 
+  [36mrouting.loader[39m                                                                Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader                    
+  [36msecurity.authentication_utils[39m                                                 Symfony\Component\Security\Http\Authentication\AuthenticationUtils         
+  [36msecurity.authorization_checker[39m                                                Symfony\Component\Security\Core\Authorization\AuthorizationChecker         
+  [36msecurity.csrf.token_manager[39m                                                   Symfony\Component\Security\Csrf\CsrfTokenManager                           
+  [36msecurity.password_encoder[39m                                                     alias for "security.user_password_encoder.generic"                         
+  [36msecurity.token_storage[39m                                                        Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage  
+  [36mservice_container[39m                                                             Symfony\Component\DependencyInjection\ContainerInterface                   
+  [36mservices_resetter[39m                                                             Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter          
+  [36msession[39m                                                                       Symfony\Component\HttpFoundation\Session\Session                           
+  [36mswiftmailer.mailer.abstract[39m                                                   Swift_Mailer                                                               
+  [36mswiftmailer.mailer.default[39m                                                    Swift_Mailer                                                               
+  [36mswiftmailer.mailer.default.plugin.messagelogger[39m                               Swift_Plugins_MessageLogger                                                
+  [36mswiftmailer.mailer.default.transport.real[39m                                     alias for "swiftmailer.mailer.default.transport.smtp"                      
+  [36mtemplating[39m                                                                    alias for "templating.engine.twig"                                         
+  [36mtemplating.loader[39m                                                             alias for "templating.loader.filesystem"                                   
+  [36mtranslator[39m                                                                    Symfony\Component\Translation\IdentityTranslator                           
+  [36mtwig[39m                                                                          Twig\Environment                                                           
+  [36mtwig.controller.exception[39m                                                     Symfony\Bundle\TwigBundle\Controller\ExceptionController                   
+  [36mtwig.controller.preview_error[39m                                                 Symfony\Bundle\TwigBundle\Controller\PreviewErrorController                
+  [36mvalidator[39m                                                                     alias for "debug.validator"                                                
+  [36mvar_dumper.cloner[39m                                                             Symfony\Component\VarDumper\Cloner\VarCloner                               
+  [36mweb_profiler.controller.exception[39m                                             Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController            
+  [36mweb_profiler.controller.profiler[39m                                              Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController             
+  [36mweb_profiler.controller.router[39m                                                Symfony\Bundle\WebProfilerBundle\Controller\RouterController               
+ ----------------------------------------------------------------------------- --------------------------------------------------------------------------- 
+
