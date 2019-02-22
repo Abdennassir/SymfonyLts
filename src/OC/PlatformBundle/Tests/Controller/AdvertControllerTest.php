@@ -1,11 +1,11 @@
 <?php
-
 namespace OC\PlatformBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AdvertControllerTest extends WebTestCase
 {
+
     public function testIndex()
     {
         $client = static::createClient();
@@ -33,5 +33,4 @@ class AdvertControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/delete');
     }
-
 }

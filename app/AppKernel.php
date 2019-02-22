@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             'dev',
             'test'
         ], true)) {
+            
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -62,5 +63,4 @@ class AppKernel extends Kernel
         });
         $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
     }
-   
 }

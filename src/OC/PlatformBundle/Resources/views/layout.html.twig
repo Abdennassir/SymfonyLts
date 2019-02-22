@@ -3,18 +3,21 @@
 {% extends "::layout.html.twig" %}
 
 {% block title %}
-  Annonces - {{ parent() }}
+Annonces -
+{{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-  <h1>Annonces</h1>
+{# On dï¿½finit un sous-titre commun ï¿½ toutes les pages du bundle, par
+exemple #}
+<h1>Annonces</h1>
 
-  <hr>
+<hr>
 
-  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
-  {% block ocplatform_body %}
-  {% endblock %}
+{# On dï¿½finit un nouveau bloc, que les vues du bundle pourront remplir
+#}
+{% block ocplatform_body %}
+{% endblock %}
 
 {% endblock %}
