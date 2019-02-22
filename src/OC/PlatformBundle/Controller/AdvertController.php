@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use OC\PlatformBundle\Entity\Advert;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class AdvertController extends Controller
 {
@@ -51,13 +53,17 @@ class AdvertController extends Controller
 
     public function viewAction($id, Request $request)
     {
-        $advert = array(
-            'title' => 'Recherche développpeur Symfony2',
-            'id' => $id,
-            'author' => 'Alexandre',
-            'content' => 'Nous recherchons un développeur Symfony2 débutant sur Lyon. Blabla…',
-            'date' => new \Datetime()
-        );
+        
+        $repo = $this->getDoctrine()
+                     ->getManager()
+                     ->getRepository('OCPlatformBundle:Advert');
+        
+        $advert = $repo->find($id);
+        
+        if($advert === null){
+            
+            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        }
 
         // $this->generateUrl("");
         return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
@@ -68,6 +74,21 @@ class AdvertController extends Controller
 
     public function addAction(Request $request)
     {
+        
+        
+        $advert  =  new Advert();
+        $advert->setTitle("Recherche développpeur Symfony3")
+                ->setAuthor('Abdennassir')
+                ->setContent('Nous recherchons un développeur Symfony2 débutant sur Lyo')
+                ;
+        
+         $em = $this->getDoctrine()
+                    ->getManager();
+         
+         $em->persist($advert);
+         
+         $em->flush();
+        
         if ($request->isMethod('POST')) {
 
             $session = $request->getSession()->getFlashBag();
@@ -93,6 +114,16 @@ class AdvertController extends Controller
 
     public function editAction($id, Request $request)
     {
+        
+        $em = $this->getDoctrine()
+                   ->getManager();
+        
+         $advert  =  $em->getRepository('OCPlatformBundle:Advert')
+                        ->find($id);
+         
+         $advert->setPublished(false);
+         $em->flush();
+         
         if ($request->isMethod('POST')) {
 
             $session = $request->getSession()->getFlashBag();

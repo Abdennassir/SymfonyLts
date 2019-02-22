@@ -65,6 +65,7 @@ class Advert
     public function __construct()
     {
         $this->setDate(new \DateTime());
+        $this->setPublished(true);
     }
 
     /**
