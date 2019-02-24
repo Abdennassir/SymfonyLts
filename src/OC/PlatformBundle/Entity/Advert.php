@@ -85,6 +85,10 @@ class Advert
      * @ORM\Column(name="published", type="boolean")
      */
     private $published;
+    /*
+    * Message pour test les conflicts
+    *
+    */
 
     public function __construct()
     {
