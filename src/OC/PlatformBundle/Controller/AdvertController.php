@@ -23,7 +23,7 @@ class AdvertController extends Controller
     {
         if ($page < 1) {
 
-            throw new NotFoundHttpException("la page demandée n'existe pas");
+            throw new NotFoundHttpException("la page demandée n'existe pas".$page);
         }
 
         // Notre liste d'annonce en dur
@@ -33,7 +33,8 @@ class AdvertController extends Controller
         
         $repoAdvert = $em->getRepository(Advert::class);
         
-        $listAdverts = $repoAdvert->findAll();
+       // $listAdverts = $repoAdvert->findAll();
+        $listAdverts = $repoAdvert->myFindAll();
 
         // return new Response(json_encode(array('nom'=>'hanafi')));
         return $this->render('OCPlatformBundle:Advert:index.html.twig', array(
@@ -48,7 +49,8 @@ class AdvertController extends Controller
                      ->getManager()
                      ->getRepository(Advert::class);
         
-        $advert = $repo->find($id);
+       // $advert = $repo->find($id);
+          $advert = $repo->myFindOne($id);
         
         
         if($advert === null){
@@ -57,7 +59,10 @@ class AdvertController extends Controller
         }
         
         $em = $this->getDoctrine()
-        ->getManager();
+                   ->getManager()
+        ;
+        
+         
         
         $listeApplication = $em->getRepository(Application::class)
                                ->findBy(array('advert'=>$advert));
