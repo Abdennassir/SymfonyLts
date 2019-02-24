@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use OC\PlatformBundle\Entity\Advert;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use OC\PlatformBundle\Entity\Image;
+use OC\PlatformBundle\Entity\Application;
+use OC\PlatformBundle\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use OC\PlatformBundle\Entity\Skill;
+use OC\PlatformBundle\Entity\AdvertSkill;
 
 class AdvertController extends Controller
 {
@@ -21,29 +27,13 @@ class AdvertController extends Controller
         }
 
         // Notre liste d'annonce en dur
-        $listAdverts = array(
-            array(
-                'title' => 'Recherche développpeur Symfony',
-                'id' => 1,
-                'author' => 'Alexandre',
-                'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
-                'date' => new \Datetime()
-            ),
-            array(
-                'title' => 'Mission de webmaster',
-                'id' => 2,
-                'author' => 'Hugo',
-                'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
-                'date' => new \Datetime()
-            ),
-            array(
-                'title' => 'Offre de stage webdesigner',
-                'id' => 3,
-                'author' => 'Mathieu',
-                'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
-                'date' => new \Datetime()
-            )
-        );
+      
+        $em = $this->getDoctrine()
+                   ->getManager();
+        
+        $repoAdvert = $em->getRepository(Advert::class);
+        
+        $listAdverts = $repoAdvert->findAll();
 
         // return new Response(json_encode(array('nom'=>'hanafi')));
         return $this->render('OCPlatformBundle:Advert:index.html.twig', array(
@@ -56,18 +46,29 @@ class AdvertController extends Controller
         
         $repo = $this->getDoctrine()
                      ->getManager()
-                     ->getRepository('OCPlatformBundle:Advert');
+                     ->getRepository(Advert::class);
         
         $advert = $repo->find($id);
+        
         
         if($advert === null){
             
             throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
         }
+        
+        $em = $this->getDoctrine()
+        ->getManager();
+        
+        $listeApplication = $em->getRepository(Application::class)
+                               ->findBy(array('advert'=>$advert));
 
+        $listAdvertSkille = $em->getRepository(AdvertSkill::class)
+                               ->findBy(array('advert'=>$advert));
         // $this->generateUrl("");
         return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
-            'advert' => $advert
+            'advert' => $advert,
+            'listeApplication' => $listeApplication,
+            'listAdvertSkille' =>  $listAdvertSkille,
             // ...
         ));
     }
@@ -75,6 +76,8 @@ class AdvertController extends Controller
     public function addAction(Request $request)
     {
         
+        $em = $this->getDoctrine()
+                    ->getManager();
         
         $advert  =  new Advert();
         $advert->setTitle("Recherche développpeur Symfony3")
@@ -82,10 +85,51 @@ class AdvertController extends Controller
                 ->setContent('Nous recherchons un développeur Symfony2 débutant sur Lyo')
                 ;
         
-         $em = $this->getDoctrine()
-                    ->getManager();
+         $image = new Image();
+         $image->setAlt("Mon logo")
+               ->setUrl("https://fr.freelogodesign.org/Content/img/logo-ex-7.png")
+               ;
+         
+         $application =  new Application();
+         $application->setAdvert($advert)
+                     ->setAuthor('Abdennassir')
+                     ->setDate(new \DateTime())
+                     ->setContent('Application pour un poste de symfony');
+         
+         
+         $advert->setImage($image);
+         
+         $listCategory = $em->getRepository(Category::class)
+                            ->findAll();
+         
+         $listSkill = $em->getRepository(Skill::class)
+                            ->findAll();
+         
+         foreach($listCategory as $category)
+         {
+             if(rand()%2){
+                 
+                 $advert->addCategory($category);
+             }
+         }
+         
+         $levels = ['junior','senior'];
+         foreach($listSkill as $skill)
+         {
+             if(rand()%2){
+                 $advertSkill  = new AdvertSkill();
+                 $advertSkill->setAdvert($advert)
+                             ->setSkill($skill)
+                             ->setLevel($levels[rand()%2])
+                 ;
+                 $em->persist($advertSkill);
+             }
+         }
+        
+        
          
          $em->persist($advert);
+         $em->persist($application);
          
          $em->flush();
         
@@ -104,7 +148,7 @@ class AdvertController extends Controller
 
         if ($antiSpam->isSpam('text')) {
 
-            throw new \Exception('Votre message est un spam');
+           // throw new \Exception('Votre message est un spam');
         }
 
         return $this->render('OCPlatformBundle:Advert:add.html.twig', array(
@@ -146,20 +190,29 @@ class AdvertController extends Controller
         ));
     }
 
-    public function deleteAction($id, Request $request)
+    public function deleteAction(Advert $advert, Request $request)
     {
-        if ($request->isMethod('POST')) {
+      
 
+            $em = $this->getDoctrine()
+                       ->getManager();
+            
+            
+            
+            foreach ($advert->getCategories() as $category){
+                
+                $advert->removeCategory($category);
+            }
+            
+            $em->flush();
             $request->getSession()
                 ->getFlashBag()
                 ->add('notice', 'Advert supprimer');
+            
+                
 
-            return $this->redirectToRoute('oc_plateform_home');
-        }
-
-        return $this->render('OCPlatformBundle:Advert:delete.html.twig', array(
-            // ...
-        ));
+            return $this->redirectToRoute('oc_platform_home');
+       
     }
 
     public function menuAction($limit)
@@ -167,21 +220,16 @@ class AdvertController extends Controller
 
         // On fixe en dur une liste ici, bien entendu par la suite
         // on la récupérera depuis la BDD !
-        $listAdverts = array(
-            array(
-                'id' => 2,
-                'title' => 'Recherche développeur Symfony'
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Mission de webmaster'
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Offre de stage webdesigner'
-            )
-        );
+       
 
+        $em = $this->getDoctrine()
+        ->getManager();
+        
+        $repoAdvert = $em->getRepository(Advert::class);
+        
+        $listAdverts = $repoAdvert->findBy(array(),array('date'=>'desc'),3,0);
+        
+        
         return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
             // Tout l'intérêt est ici : le contrôleur passe
             // les variables nécessaires au template !

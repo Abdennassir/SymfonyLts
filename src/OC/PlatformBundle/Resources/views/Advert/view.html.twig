@@ -14,9 +14,40 @@ Lecture d'une annonce -
 </h2>
 <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
 
+{% if advert.image is not null %}
+<div class="">
+
+	<img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}">
+</div>
+{% endif %}
 <div class="well">
 	{{ advert.content }}
 </div>
+
+<ul>
+	{% for application in listeApplication %}
+		<li>{{ application.content }}</li>
+	{% endfor %}
+</ul>
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% if not advert.categories.empty %}
+  <p>
+    Cette annonce est parue dans les catégories suivantes :
+    {% for category in advert.categories %}
+      {{ category.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
+
+{% if  listAdvertSkille|length %}
+  <p>
+    Cette annonce exige les Skills suivantes :
+    {% for advertSkill in listAdvertSkille %}
+      {{ advertSkill.skill.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
 
 <p>
 	<a href="{{ path('oc_platform_home') }}" class="btn btn-default"> <i

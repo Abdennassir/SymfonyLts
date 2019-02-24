@@ -10,3 +10,11 @@ services:
            - "@mailer"
            - "%locale%"
            - 50
+    oc_platform.load_category:
+        class: OC\PlatformBundle\DataFixtures\LoadCategory
+        tags: [doctrine.fixture.orm]
+        
+    oc_platform.load_skill:
+        class: OC\PlatformBundle\DataFixtures\LoadSkill
+        tags: [doctrine.fixture.orm]
+            
